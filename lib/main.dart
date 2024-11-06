@@ -13,7 +13,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'App de Receitas',
       theme: ThemeData(primarySwatch: Colors.blue),
-      initialRoute: '/', // Define a tela inicial como HomeScreen
+      initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
         '/receitas': (context) => ReceitaListScreen(),

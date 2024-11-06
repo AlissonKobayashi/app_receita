@@ -1,5 +1,5 @@
 import 'package:flutter_test/flutter_test.dart';
-import '../lib/models/receita.dart';
+import 'package:app_receita/models/receita.dart';
 
 void main() {
   test('Deve criar uma instância de Receita', () {

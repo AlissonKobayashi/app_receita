@@ -1,3 +1,4 @@
+import 'package:app_receita/receita.dart';
 import 'package:http/http.dart' as http;
 
 class ReceitaService {
@@ -14,5 +15,7 @@ class ReceitaService {
     );
   }
 
-  // Outros métodos de CRUD como update e delete
+  List<Receita> filtrarReceitasPorNome(List<Receita> receitas, String nome) {
+    return receitas.where((receita) => receita.nome.contains(nome)).toList();
+  }
 }
