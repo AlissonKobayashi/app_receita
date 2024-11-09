@@ -1,3 +1,4 @@
+
 import 'package:app_receita/models/receita.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert';
@@ -24,5 +25,9 @@ class ApiService {
     if (response.statusCode != 201) {
       throw Exception('Falha ao adicionar receita');
     }
+  }
+
+  List<Receita> filtrarReceitasPorNome(List<Receita> receitas, String nome) {
+    return receitas.where((receita) => receita.nome.contains(nome)).toList();
   }
 }

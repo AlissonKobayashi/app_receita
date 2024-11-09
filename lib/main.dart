@@ -42,10 +42,15 @@ class _ReceitasAppState extends State<ReceitasApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+<<<<<<< HEAD
       title: 'Aplicativo de Receitas',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+=======
+      title: 'App de Receitas',
+      theme: ThemeData(primarySwatch: Colors.blue),
+>>>>>>> c403c7381fc74bf0efc981079586c4ac15f8cba9
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
