@@ -1,14 +1,76 @@
+import 'package:app_receita/Storage/receita_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:app_receita/models/receita.dart';
+import 'package:app_receita/screens/forms_screen.dart'; // Tela de adicionar receita
 
-class ReceitaListScreen extends StatelessWidget {
+class ListaReceitas extends StatefulWidget {
+  final List<Receita> receitas;
+  final Function(Receita) onReceitaAdicionada;  // Parâmetro para a função de adicionar receita
+
+  // Construtor atualizado para receber o parâmetro
+  ListaReceitas({required this.receitas, required this.onReceitaAdicionada});
+
+  @override
+  _ListaReceitasState createState() => _ListaReceitasState();
+}
+
+class _ListaReceitasState extends State<ListaReceitas> {
+  late List<Receita> receitas;
+
+  @override
+  void initState() {
+    super.initState();
+    receitas = widget.receitas;
+  }
+
+  // Função para favoritar ou desfavoritar a receita
+  void atualizarFavorito(Receita receita) {
+    setState(() {
+      receita.favorito = !receita.favorito;
+    });
+    // Salva as alterações após favoritar
+    ReceitaStorage.salvarReceitas(receitas);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Lista de Receitas'),
+        title: Text("Lista de Receitas"),
       ),
-      body: Center(
-        child: Text('Aqui será exibida a lista de receitas'),
+      body: ListView.builder(
+        itemCount: receitas.length,
+        itemBuilder: (context, index) {
+          final receita = receitas[index];
+          return ListTile(
+            title: Text(receita.nome),
+            subtitle: Text("Ingredientes: ${receita.ingredientes.join(', ')}"),
+            trailing: IconButton(
+              icon: Icon(
+                receita.favorito ? Icons.favorite : Icons.favorite_border,
+                color: receita.favorito ? Colors.red : null,
+              ),
+              onPressed: () => atualizarFavorito(receita),
+            ),
+          );
+        },
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () async {
+          // Ao apertar o botão flutuante, navega para a tela de adicionar receita
+          final Receita? novaReceita = await Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (context) => FormularioReceita(onReceitaSalva: widget.onReceitaAdicionada),
+            ),
+          );
+          if (novaReceita != null) {
+            widget.onReceitaAdicionada(novaReceita);  // Adiciona a nova receita na lista
+            // Salva as receitas após adicionar uma nova
+            ReceitaStorage.salvarReceitas(receitas);
+          }
+        },
+        child: Icon(Icons.add),
       ),
     );
   }

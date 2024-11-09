@@ -1,0 +1,18 @@
+{
+  "receitas": [
+    {
+      "id": 1,
+      "nome": "Bolo de Chocolate",
+      "categoriaId": 1,
+      "favorito": false,
+      "ingredientes": ["chocolate", "farinha", "açúcar", "ovo"]
+    },
+    {
+      "id": 2,
+      "nome": "Brigadeiro",
+      "categoriaId": 2,
+      "favorito": false,
+      "ingredientes": ["leite condensado", "chocolate"]
+    }
+  ]
+}
