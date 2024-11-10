@@ -1,7 +1,7 @@
 import 'package:app_receita/Storage/receita_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:app_receita/models/receita.dart';
-import 'package:app_receita/screens/list_screen.dart'; // Tela de listagem
+import 'package:app_receita/screens/list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -14,23 +14,19 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    _carregarReceitas();  // Carregar as receitas ao iniciar
+    _carregarReceitas();
   }
 
-  // Carregar receitas
   _carregarReceitas() async {
     List<Receita> loadedReceitas = await ReceitaStorage.carregarReceitas();
     setState(() {
       receitas = loadedReceitas;
     });
   }
-
-  // Função para adicionar uma nova receita
   void adicionarReceita(Receita receita) {
     setState(() {
-      receitas.add(receita);  // Adiciona a nova receita
+      receitas.add(receita); 
     });
-    // Salva as receitas depois de adicionar
     ReceitaStorage.salvarReceitas(receitas);
   }
 
@@ -41,8 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
         title: Text("Tela Inicial"),
       ),
       body: ListaReceitas(
-        receitas: receitas,  // Passa a lista de receitas
-        onReceitaAdicionada: adicionarReceita,  // Passa a função para adicionar receitas
+        receitas: receitas, 
+        onReceitaAdicionada: adicionarReceita, 
       ),
     );
   }
