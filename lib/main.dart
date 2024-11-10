@@ -14,7 +14,6 @@ class ReceitasApp extends StatefulWidget {
 }
 
 class _ReceitasAppState extends State<ReceitasApp> {
-  // Lista de receitas que será passada para as telas
   List<Receita> receitas = [
     Receita(
       id: 1,
@@ -32,34 +31,28 @@ class _ReceitasAppState extends State<ReceitasApp> {
     ),
   ];
 
-  // Função para adicionar uma nova receita na lista
   void adicionarReceita(Receita receita) {
     setState(() {
-      receitas.add(receita);  // Adiciona a nova receita
+      receitas.add(receita); 
     });
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-<<<<<<< HEAD
       title: 'Aplicativo de Receitas',
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-=======
-      title: 'App de Receitas',
-      theme: ThemeData(primarySwatch: Colors.blue),
->>>>>>> c403c7381fc74bf0efc981079586c4ac15f8cba9
       initialRoute: '/',
       routes: {
         '/': (context) => HomeScreen(),
         '/listaReceitas': (context) => ListaReceitas(
           receitas: receitas,
-          onReceitaAdicionada: adicionarReceita,  // Passa a função para adicionar receitas
+          onReceitaAdicionada: adicionarReceita, 
         ),
         '/formularioReceita': (context) => FormularioReceita(
-          onReceitaSalva: adicionarReceita,  // Passa a função para salvar a receita
+          onReceitaSalva: adicionarReceita,
         ),
       },
     );
