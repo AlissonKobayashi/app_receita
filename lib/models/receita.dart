@@ -2,7 +2,7 @@ class Receita {
   final int id;
   final String nome;
   final int categoriaId;
-  bool favorito; // Tornando 'favorito' mutável
+  bool favorito; 
   final List<String> ingredientes;
 
   Receita({
@@ -13,7 +13,6 @@ class Receita {
     required this.ingredientes,
   });
 
-  // Método para converter a receita para JSON
   Map<String, dynamic> toJson() {
     return {
       'id': id,
@@ -24,7 +23,6 @@ class Receita {
     };
   }
 
-  // Método para criar uma receita a partir de um JSON
   factory Receita.fromJson(Map<String, dynamic> json) {
     return Receita(
       id: json['id'],
