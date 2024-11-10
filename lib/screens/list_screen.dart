@@ -1,13 +1,12 @@
 import 'package:app_receita/Storage/receita_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:app_receita/models/receita.dart';
-import 'package:app_receita/screens/forms_screen.dart'; // Tela de adicionar receita
+import 'package:app_receita/screens/forms_screen.dart'; 
 
 class ListaReceitas extends StatefulWidget {
   final List<Receita> receitas;
-  final Function(Receita) onReceitaAdicionada;  // Parâmetro para a função de adicionar receita
+  final Function(Receita) onReceitaAdicionada; 
 
-  // Construtor atualizado para receber o parâmetro
   ListaReceitas({required this.receitas, required this.onReceitaAdicionada});
 
   @override
@@ -23,12 +22,10 @@ class _ListaReceitasState extends State<ListaReceitas> {
     receitas = widget.receitas;
   }
 
-  // Função para favoritar ou desfavoritar a receita
   void atualizarFavorito(Receita receita) {
     setState(() {
       receita.favorito = !receita.favorito;
     });
-    // Salva as alterações após favoritar
     ReceitaStorage.salvarReceitas(receitas);
   }
 
@@ -57,7 +54,6 @@ class _ListaReceitasState extends State<ListaReceitas> {
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
-          // Ao apertar o botão flutuante, navega para a tela de adicionar receita
           final Receita? novaReceita = await Navigator.push(
             context,
             MaterialPageRoute(
@@ -65,8 +61,7 @@ class _ListaReceitasState extends State<ListaReceitas> {
             ),
           );
           if (novaReceita != null) {
-            widget.onReceitaAdicionada(novaReceita);  // Adiciona a nova receita na lista
-            // Salva as receitas após adicionar uma nova
+            widget.onReceitaAdicionada(novaReceita);
             ReceitaStorage.salvarReceitas(receitas);
           }
         },
