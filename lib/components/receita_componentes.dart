@@ -1,7 +1,7 @@
 import 'package:app_receita/screens/list_screen.dart';
 import 'package:app_receita/screens/screen.dart';
 import 'package:flutter/material.dart';
-import 'package:app_receita/screens/forms_screen.dart';  // Importe a tela de formulário de receita
+import 'package:app_receita/screens/forms_screen.dart'; 
 
 class AppDrawer extends StatelessWidget {
   @override
@@ -26,14 +26,12 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: Text('Lista de Receitas'),
             onTap: () {
-              // Passando a lista de receitas e a função de adicionar
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => ListaReceitas(
-                    receitas: [],  // Aqui você pode passar a lista de receitas persistidas
+                    receitas: [], 
                     onReceitaAdicionada: (receita) {
-                      // Função para adicionar receita na lista
                       print("Receita adicionada: ${receita.nome}");
                     },
                   ),
@@ -44,13 +42,11 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             title: Text('Adicionar Receita'),
             onTap: () {
-              // Passando a função de salvar a receita
               Navigator.push(
                 context,
                 MaterialPageRoute(
                   builder: (context) => FormularioReceita(
                     onReceitaSalva: (receita) {
-                      // Lógica para salvar a receita
                       print("Receita salva: ${receita.nome}");
                     },
                   ),
