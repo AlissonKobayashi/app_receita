@@ -14,24 +14,20 @@ class _FormularioReceitaState extends State<FormularioReceita> {
   final _nomeController = TextEditingController();
   final _ingredientesController = TextEditingController();
 
-  // Função para adicionar receita
   Future<void> adicionarReceita() async {
     final String nome = _nomeController.text;
     final String ingredientes = _ingredientesController.text;
 
-    // Criação do objeto Receita
     final novaReceita = Receita(
-      id: DateTime.now().millisecondsSinceEpoch, // Gerar um id único
+      id: DateTime.now().millisecondsSinceEpoch, 
       nome: nome,
-      categoriaId: 1, // Valor fixo ou o que você precisar
-      favorito: false, // Definir o valor como false por padrão
-      ingredientes: ingredientes.split(','), // Separar os ingredientes por vírgula
+      categoriaId: 1,
+      favorito: false, 
+      ingredientes: ingredientes.split(','), 
     );
 
-    // Chama o callback para adicionar a receita
     widget.onReceitaSalva(novaReceita);
 
-    // Voltar para a tela anterior
     Navigator.pop(context);
   }
 
